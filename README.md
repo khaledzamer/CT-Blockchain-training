@@ -26,3 +26,12 @@ https://remix.ethereum.org
 
 Use file:
 lab3/SimpleStorage.sol
+
+## Lab 4 (on your laptop, NOT Codespaces)
+Device identification – who is on the training network?
+
+Open:
+lab4/README.md
+
+Run on your laptop:
+python lab4/discover_devices.py
