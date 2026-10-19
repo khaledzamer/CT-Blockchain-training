@@ -39,8 +39,9 @@ def ping(ip):
         cmd = ["ping", "-c", "1", "-W", "500", ip]
     else:
         cmd = ["ping", "-c", "1", "-W", "1", ip]
-    result = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    return result.returncode == 0
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    # Windows returns success even for "Destination host unreachable", so check for a real reply
+    return result.returncode == 0 and (SYSTEM != "Windows" or "TTL=" in result.stdout.upper())
 
 
 def normalize_mac(mac):
